@@ -12,6 +12,10 @@ import { HomeComponent } from './home/home.component';
 import { AuthenticationService } from './authentication.service';
 import { AuthGuardService } from './auth-guard.service';
 
+// import alert service and component
+import { AlertComponent } from './_directives/index';
+import { AlertService } from './_services/index';
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
@@ -25,6 +29,7 @@ const routes: Routes = [
     ProfileComponent,
     LoginComponent,
     RegisterComponent,
+    AlertComponent,
     HomeComponent
   ],
   imports: [
@@ -34,8 +39,9 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
   ],
   providers: [
-    AuthenticationService, 
-    AuthGuardService
+    AuthenticationService,
+    AuthGuardService,
+    AlertService
   ],
   bootstrap: [AppComponent]
 })
