@@ -1,0 +1,269 @@
+<!--
+
+<div class="col-md-12">
+
+    <mat-card class="example-card">
+       
+        <mat-card-header>
+            <div class="col-md-2">Room Type Name</div>
+            <div class="col-md-2">Base Price</div>
+            <div class="col-md-2">Extra Person Charge</div>
+            <div class="col-md-2">Extra Bed Charge</div>
+            <div class="col-md-2">No. of Rooms</div>
+            <div class="col-md-2">Occupancy</div>
+          </mat-card-header>
+      </mat-card>
+
+  <mat-card class="example-card" >
+    
+    <mat-card-header>
+        <div class="col-md-2"> 
+          <mat-form-field class="example-full-width">
+            <input matInput name="nameAddRoom" [ngModel]="name[0]" (ngModelChange)="name[0]=$event">
+          </mat-form-field>
+        </div>
+        <div class="col-md-2">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Rs" name="basepriceAddRoom" [ngModel]="base_price[0]" (ngModelChange)="base_price[0]=$event" >
+              </mat-form-field>
+        </div>
+        <div class="col-md-2">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Rs" name="expaersonchargeAddRoom" [ngModel]="ex_person_charge[0]" (ngModelChange)="ex_person_charge[0]=$event">
+              </mat-form-field>
+        </div>
+        
+        <div class="col-md-2">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Rs" name="exbedchargeAddRoom" [(ngModel)]="ex_bed_charge[0]">
+              </mat-form-field>
+        </div>
+        <div class="col-md-2">
+            <mat-form-field class="example-full-width">
+                <input matInput name="noforoomsAddRoom" [(ngModel)]="no_of_rooms[0]">
+              </mat-form-field>
+        </div>
+        <div class="col-md-2">
+            
+                
+                    <mat-form-field>
+                  <input matInput placeholder="Base" name="occupbaseAddRoom" [(ngModel)]="occup_base[0]">
+                  </mat-form-field>
+              
+      
+                    <mat-form-field>
+                  <input matInput placeholder="Max" name="occupmaxAddRoom" [(ngModel)]="occup_max[0]">
+                  </mat-form-field>
+            
+                    <mat-form-field>
+                  <input matInput placeholder="ex Bed(s)" name="occupexbedsAddRoom" [(ngModel)]="occup_ex_beds[0]">
+                  </mat-form-field>
+     
+            
+        </div>
+        
+        <div class="col-md-1 link-btn">
+            <a (click)="openRateModal()">Additional Info</a>
+        </div>
+        
+    </mat-card-header>
+   
+  </mat-card>
+
+
+  <mat-card *ngFor="let count of divCount; let i = index" [attr.data-index]="i" class="example-card">
+    
+      <mat-card-header>
+          
+          <div class="col-md-2">
+              <mat-form-field class="example-full-width">
+                  <input matInput name="{{ 'twoxxAddRoom' + i }}" [(ngModel)]="name[i+1]">
+                </mat-form-field>
+          </div>
+          <div class="col-md-2">
+              <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Rs" name="{{ 'twobasepriceAddRoom' + i }}" [(ngModel)]="base_price[i+1]">
+                </mat-form-field>
+          </div>
+          <div class="col-md-2">
+              <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Rs" name="{{ 'twobcAddRoom' + i }}" [(ngModel)]="ex_person_charge[i+1]">
+                </mat-form-field>
+          </div>
+          <div class="col-md-2"> 
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Rs" name="{{ 'twonnAddRoom' + i }}" [(ngModel)]="ex_bed_charge[i+1]">
+              </mat-form-field>
+            </div>
+          <div class="col-md-2">
+              <mat-form-field class="example-full-width">
+                  <input matInput name="{{ 'twocdAddRoom' + i }}" [(ngModel)]="no_of_rooms[i+1]">
+                </mat-form-field>
+          </div>
+
+          
+          <div class="col-md-2">
+              
+                  
+                      <mat-form-field>
+                    <input matInput placeholder="Base" name="{{ 'twodeAddRoom' + i }}" [(ngModel)]="occup_base[i+1]">
+                    </mat-form-field>
+                
+        
+                      <mat-form-field>
+                    <input matInput placeholder="Max" name="{{ 'twoefAddRoom' + i }}" [(ngModel)]="occup_max[i+1]">
+                    </mat-form-field>
+              
+                      <mat-form-field>
+                    <input matInput placeholder="ex Bed(s)" name="{{ 'twofgAddRoom' + i }}" [(ngModel)]="occup_ex_beds[i+1]">
+                    </mat-form-field>
+       
+              
+          </div>
+          <div class="col-md-1 link-btn">
+            <a (click)="openRateModal()">Additional Info</a>
+        </div>
+      </mat-card-header>
+     
+    </mat-card>
+
+</div>
+
+
+
+<div class="button-row">
+
+    <button mat-mini-fab color="primary" (click)="addCard()">+</button>
+ 
+</div>
+
+<div class="button-row-two">
+
+    <button mat-raised-button color="primary" (click)="addRooms()">Add Rooms</button>
+ 
+</div> -->
+
+
+
+<form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
+<div class="col-md-12">
+
+        <mat-card class="example-card">
+           
+            <mat-card-header>
+                <div class="col-md-2">Room Type Name</div>
+                <div class="col-md-2">Base Price</div>
+                <div class="col-md-2">Extra Person Charge</div>
+                <div class="col-md-2">Extra Bed Charge</div>
+                <div class="col-md-2">No. of Rooms</div>
+                <div class="col-md-2">Occupancy</div>
+              </mat-card-header>
+          </mat-card>
+    
+          <div formArrayName="rooms">
+              <div *ngFor="let room of myForm.controls.rooms.controls; let i=index">
+                  <div [formGroupName]="i">
+      <mat-card class="example-card" >
+        
+        <mat-card-header>
+
+            <div class="col-md-2"> 
+              <mat-form-field class="example-full-width">
+                <input matInput name="nameAddRoom" formControlName="room_name">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Rs" name="basepriceAddRoom" formControlName="base_price" >
+                  </mat-form-field>
+            </div>
+            <div class="col-md-2">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Rs" name="expaersonchargeAddRoom" formControlName="ex_person_charge">
+                  </mat-form-field>
+            </div>
+            
+            <div class="col-md-2">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Rs" name="exbedchargeAddRoom" formControlName="ex_bed_charge">
+                  </mat-form-field>
+            </div>
+            <div class="col-md-2">
+                <mat-form-field class="example-full-width">
+                    <input matInput name="noforoomsAddRoom" formControlName="no_of_rooms">
+                  </mat-form-field>
+            </div>
+            <div class="col-md-2">
+                
+                    
+                        <mat-form-field>
+                      <input matInput placeholder="Base" name="occupbaseAddRoom" formControlName="occup_base">
+                      </mat-form-field>
+                  
+          
+                        <mat-form-field>
+                      <input matInput placeholder="Max" name="occupmaxAddRoom" formControlName="occup_max">
+                      </mat-form-field>
+                
+                        <mat-form-field>
+                      <input matInput placeholder="ex Bed(s)" name="occupexbedsAddRoom" formControlName="occup_ex_beds">
+                      </mat-form-field>
+                      
+                
+            </div>
+
+            
+            
+            
+            
+            <div formArrayName="rates" class="col-md-2 link-btn">
+                    <div *ngFor="let rate of myForm.controls.rooms.controls[i].controls.rates.controls; let j=index">
+                        <div [formGroupName]="j">
+                 <mat-form-field>
+                      <input matInput placeholder="Rate Type" name="occupbaseAddRoom" formControlName="rate_type">
+                      </mat-form-field>
+                  
+          
+                        <mat-form-field>
+                      <input matInput placeholder="Value" name="occupmaxAddRoom" formControlName="rate_value">
+                      </mat-form-field>
+            </div>
+            </div>
+            </div>
+
+            <div class="col-md-2 link-again">
+       
+                        <button mat-raised-button color="primary" (click)="addRate(i)">Add More Rate</button>
+
+                        <button mat-raised-button color="primary" (click)="removeRate(i)">Remove Rate</button>
+
+                        <button mat-raised-button color="primary" (click)="removeRoom(i)">Remove Room</button>
+
+            </div>
+
+            
+            
+        </mat-card-header>
+       
+      </mat-card>
+      </div>
+      </div>
+      </div>
+      
+      </div>
+      
+      
+      
+      <div class="button-row">
+      
+        <button mat-mini-fab color="primary" (click)="addRoom()">+</button>
+      
+      </div>
+      
+      <div class="button-row-two">
+      
+        <button mat-raised-button color="primary" type="submit">Add Rooms</button>
+      
+      </div>
+
+      </form>

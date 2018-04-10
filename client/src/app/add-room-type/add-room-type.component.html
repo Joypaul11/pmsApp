@@ -1,0 +1,95 @@
+
+
+<form [formGroup]="roomForm" (ngSubmit)="addRoomSubmit(roomForm)">
+
+    <div class="form-group col-md-6">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Room Name" formControlName="room_name">
+      </div>
+  
+      <div class="form-group col-md-6">
+        <label for="beds">No of Rooms</label>
+        <input type="text" class="form-control" id="beds" name="norooms" placeholder="Room quantity" formControlName="no_of_rooms">
+      </div>
+    
+    <div class="form-group col-md-6">
+        <label for="sel1">Select Amenities</label>
+        <select ng-model="selection" multiple="multiple" multi-select>
+            <optgroup label="All">
+              <option *ngFor="let item of amenities" value="{{item._id}}">{{ item.name }}</option>
+              
+            </optgroup>
+            
+          </select>
+      </div>
+    
+    
+
+    <div class="form-group col-md-6">
+      <label for="type">Base Price</label>
+      <input type="text" class="form-control" id="type" name="price" placeholder="Room Type" formControlName="base_price">
+    </div>
+    
+
+    
+    <div class="form-group col-md-6">
+        <label for="type">Extra Person Charge</label>
+        <input type="text" class="form-control" id="type" name="experch" placeholder="Room Type" formControlName="ex_person_charge">
+      </div>
+    
+      <div class="form-group col-md-6">
+          <label for="type">Extra Bed Charge</label>
+          <input type="text" class="form-control" id="type" name="exbedch" placeholder="Room Type" formControlName="ex_bed_charge">
+        </div>
+    
+        <div class="form-group col-md-4">
+            <label for="type">Base Occupancy</label>
+            <input type="text" class="form-control" id="type" name="occupbas" placeholder="Room Type" formControlName="occup_base">
+          </div>
+
+
+          <div class="form-group col-md-4">
+              <label for="type">Max Occupancy</label>
+              <input type="text" class="form-control" id="type" name="occupmax" placeholder="Room Type" formControlName="occup_max">
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="type">Max Extra Beds</label>
+                <input type="text" class="form-control" id="type" name="occupex" placeholder="Room Type" formControlName="occup_ex_beds">
+              </div>
+
+              <div formArrayName="rates">
+                  <div *ngFor="let rate of roomForm.get('rates').controls; let j=index">
+                      <div [formGroupName]="j">  
+
+              <div class="form-group col-md-4">
+                  <label for="type">Rate Type</label>
+                  <input type="text" class="form-control" id="type" name="ratetype" placeholder="Rate Type" disabled formControlName="rate_type">
+                </div>
+
+                
+                
+
+              <div class="form-group col-md-4">
+                  <label for="type">Rate Value</label>
+                  <input type="text" class="form-control" id="type" name="occupex" placeholder="Rate Value" formControlName="rate_value">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="type">VAT Rate</label>
+                    <input type="text" class="form-control" id="type" name="occupex" placeholder="Rate Value" formControlName="vat_rate">
+                  </div>
+            
+
+                </div>
+                </div>
+                </div>
+
+    <div class="form-group text-center col-md-6">
+      
+      <button class="form-control btn-primary btn-sm" type="submit">Save</button>
+      <button class="form-control btn-primary btn-sm" >Cancel</button>
+
+    </div> 
+
+    </form>

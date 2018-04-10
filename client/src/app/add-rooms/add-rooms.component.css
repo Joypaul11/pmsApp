@@ -1,0 +1,38 @@
+.example-card {
+    max-width: 100%;
+    margin-top: 5px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+  .button-row {
+    width: 10px;
+    margin: 0 auto;
+    position: relative;
+    top: 20px;
+  }
+
+  .button-row-two {
+    width: 67px;
+    top: 30px;
+    padding-bottom: 30px;
+
+    margin: 0 auto;
+    position: relative;
+  }
+
+.link-btn {
+  position: absolute;
+  right: 1074px;
+  top: 94px;
+}
+
+.link-again {
+  position: relative;
+  right: 1000px;
+  top: 96px;
+
+}

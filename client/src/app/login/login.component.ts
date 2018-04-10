@@ -13,6 +13,10 @@ export class LoginComponent {
     password: ''
   };
 
+  type= 'password';
+
+  show = false;
+
   constructor(
     private auth: AuthenticationService,
     private router: Router,
@@ -20,11 +24,26 @@ export class LoginComponent {
   ) {}
 
   login() {
-    this.auth.login(this.credentials).subscribe(() => {
-      this.router.navigateByUrl('/profile');
+    this.auth.login(this.credentials).subscribe((data) => {
+      if (data.user_type === 'admin') {
+        this.router.navigateByUrl('/admin-dashboard');
+      } else {
+        this.router.navigateByUrl('/frontdesk');
+      }
     }, (err) => {
       console.error(err);
       this.alertService.error('Invalid password, please try again!');
     });
   }
+
+  toggleShow()
+    {
+        this.show = !this.show;
+        if (this.show){
+            this.type = "text";
+        }
+        else {
+            this.type = "password";
+        }
+    }
 }

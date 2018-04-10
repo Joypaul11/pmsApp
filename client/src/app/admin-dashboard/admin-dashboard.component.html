@@ -1,0 +1,348 @@
+<!--
+<div class="mainbar">
+    <div class="left">
+      <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/9/93/No-logo.svg" />
+    </div>
+    <div class="right">
+      <div class="profile">
+        <!--
+      <img class="pic" src="https://organicthemes.com/demo/profile/files/2012/12/profile_img.png" /> --> <!--
+      <h4 class="name">{{ auth.getUserDetails()?.name }} <i class="fa fa-angle-down"></i></h4>
+        <ul>
+          <li><i class="fa fa-home"></i> Home</li>
+          <li><a routerLink="/frontdesk"><i class="fa fa-list-alt"></i> Frontdesk</a></li>
+          <li><i class="fa fa-cog"></i> Change Password</li>
+          <li class="separator"></li>
+          <li><a (click)="auth.logout()"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+-->
+
+<!--
+  <nav id="main_nav">
+			<ul>
+				<li>
+					<a >Rooms Manager</a>
+					<ul>
+						<li><a >Amenities</a></li>
+						<li><a >Blocks</a></li>
+            <li><a >Floors</a></li>
+            <li><a (click)="gotoRoomTypes()">Room Types</a></li>
+            <li><a (click)="gotoRoomList()">Rooms</a></li>
+            <li><a >Sort Rooms</a></li>
+            <li><a >Display Colors</a></li>
+            <li><a >Phone Extensions</a></li>
+            <li><a >Room Taxes</a></li>
+            <li><a >Overbooking</a></li>
+            <li><a >Bill Messages</a></li>
+					</ul>
+				</li>
+				<li>
+					<a >General</a>
+					<ul>
+						<li>
+							<a >Default Settings</a>
+						</li>
+						<li>
+							<a >Hotel Custom Settings</a>
+						</li>
+						<li>
+							<a >Invoice Number Settings</a>
+            </li>
+            <li>
+                <a >Departments</a>
+              </li>
+            <li><a>List of currencies</a></li>
+            <li><a>List of Languages</a></li>
+            <li><a>Reasons for Cancellation</a></li>
+            <li><a>Reason for Tax-Exempt</a></li>
+            <li><a>Special Discounts</a></li>
+            <li><a>Announcements</a></li>
+            <li><a>Account Attributes</a></li>
+            <li><a>Pay Modes</a></li>
+            <li><a>Pay Types</a></li>
+            <li><a>Counters</a></li>
+            <li><a>Identification Types</a></li>
+            <li><a>Guest Type</a></li>
+            <li><a>Source of Business</a></li>
+            <li><a>PromoCode/Un-lock Deal</a></li>
+            <li><a>Custom Tag List</a></li>
+            <li><a>Mode of Arrival/Departure</a></li>
+            <li><a>Preferances</a></li>
+            <li><a>Cancellation</a></li>
+            <li><a>Booking Policy</a></li>
+            <li><a>Frontdesk Minimum Bookable Nights</a></li>
+            <li><a>Email Configuration</a></li>
+            <li><a>Email Settings</a></li>
+            <li><a>CC Locator Email Settings</a></li>
+            <li><a>Notes</a></li>
+            <li><a>Logged In User(s)</a></li>
+            <li><a>Frontdesk Login Script</a></li>
+            <li><a>Early Bird Discount</a></li>
+            <li><a>Last Minute Discount</a></li>
+            <li><a>Long Stay Discount</a></li>
+            <li><a>Dynamic Pricing</a></li>
+            <li><a>Market Segment</a></li>
+					</ul>
+				</li>
+				<li>
+					<a >Price Manager</a>
+					<ul>
+						<li><a >Seasons Attribute</a></li>
+						<li><a >Seasons</a></li>
+						<li><a >Special Periods</a></li>
+            <li><a >Rooms Prices</a></li>
+            <li><a >Add-ons (Inclusions)</a></li>
+            <li><a >Packages Master</a></li>
+            <li><a >Frontdesk Packages</a></li>
+            <li><a >Web Packages</a></li>
+            <li><a >Corporate Packages</a></li>
+            <li><a >Travel Agent </a></li>
+            <li><a >VIP Guest(Packages)</a></li>
+            <li><a >Other (GDS Packages)</a></li>
+            <li><a >Centralized Rate</a></li>
+            <li><a >Group(Booking Source)</a></li>
+            <li><a >Group Tax</a></li>
+					</ul>
+				</li>
+				<li>
+					<a >POS Manager</a>
+					<ul>
+						<li><a >POS Points</a></li>
+						<li><a >POS Taxes</a></li>
+            <li><a >Measurement Units</a></li>
+            <li><a >POS Attribute</a></li>
+            <li><a >POS Items</a></li>
+            <li><a >Bill Messages</a></li>
+					</ul>
+        </li>
+        
+        <li>
+            <a >Company Info</a>
+            <ul>
+              <li><a >Company Profile</a></li>
+              <li><a >Hotel Information</a></li>
+              <li><a >Mailchimp Connect</a></li>
+              <li><a >Channel Manager Offer</a></li>
+            </ul>
+          </li>
+
+          <li>
+              <a >User Manager</a>
+              <ul>
+                <li><a >User Levels</a></li>
+                <li><a >Users</a></li>
+                <li><a >Login Activity</a></li>
+              </ul>
+            </li>
+
+            <li>
+                <a >Guest Manager</a>
+                <ul>
+                  <li><a >List of Salutations</a></li>
+                  <li><a >Guest List</a></li>
+                  <li><a >VIP Guest List</a></li>
+                  <li><a >Black List</a></li>
+                  <li><a >Credit Card Console</a></li>
+                  <li><a >Guest Preferences</a></li>
+                  <li><a >Guest Upload</a></li>
+                  <li><a >Trip Reviews</a></li>
+                </ul>
+              </li>
+
+              <li>
+                  <a >Console</a>
+                  <ul>
+                    <li><a >Registered Corporate</a></li>
+                    <li><a >Registered Travel Agent</a></li>
+                  </ul>
+                </li>
+
+                <li>
+                    <a >Reports</a>
+                    <ul>
+                      <li><a >Billings</a></li>
+                      <li><a >Night Audit Reports</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                      <a >Web Manager</a>
+                      <ul>
+                        <li><a >Booking Restrictions</a></li>
+                        <li><a >Web Setting</a></li>
+                        <li><a >Minimum Bookable Nights</a></li>
+                        <li><a >Web Reservation Designing Tool</a></li>
+
+                      </ul>
+                    </li>
+			</ul>
+		</nav>
+  -->
+
+
+   <input type="checkbox" id="drawer-toggle" name="drawer-toggle"/>
+   <label for="drawer-toggle" id="drawer-toggle-label"></label>
+   <header> 
+
+      <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/9/93/No-logo.svg" />
+
+      
+          <div class="dropdown pull-right">
+              <button class="dropbtn">{{ auth.getUserDetails()?.name }}
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div class="dropdown-content">
+                <a>Home</a>
+                <a routerLink="/frontdesk"><i class="fa fa-list-alt"></i>Frontdesk</a>
+                <a (click)="auth.logout()"><i class="fa fa-sign-out-alt"></i>Logout</a>
+              </div>
+            </div> 
+
+            <!--
+          <div class="right">
+              <div class="profile">
+                
+              <h4 class="name">{{ auth.getUserDetails()?.name }} <i class="fa fa-angle-down"></i></h4>
+                <ul>
+                  <li><i class="fa fa-home"></i> Home</li>
+                  <li><a routerLink="/frontdesk"><i class="fa fa-list-alt"></i> Frontdesk</a></li>
+                  <li><i class="fa fa-cog"></i> Change Password</li>
+                  <li class="separator"></li>
+                  <li><a (click)="auth.logout()"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+                
+              </div>
+            </div> -->
+      
+   </header>
+  
+   <nav id="drawer">
+     <!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-default open" role="navigation">
+    <!-- Sidebar header -->
+    <div class="sidebar-header header-cover" style="background-image: url(https://2.bp.blogspot.com/-2RewSLZUzRg/U-9o6SD4M6I/AAAAAAAADIE/voax99AbRx0/s1600/14%2B-%2B1%2B%281%29.jpg);">
+        <!-- Top bar -->
+        <div class="top-bar"></div>
+        <!-- Sidebar toggle button -->
+        <button type="button" class="sidebar-toggle">
+            <i class="icon-material-sidebar-arrow"></i>
+        </button>
+        <!-- Sidebar brand image -->
+        <div class="sidebar-image">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/53474/atom_profile_01.jpg">
+        </div>
+        <!-- Sidebar brand name -->
+        <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+            john.doe@gmail.com
+            <b class="caret"></b>
+        </a>
+    </div>
+
+    <!-- Sidebar navigation -->
+    <ul class="nav sidebar-nav">
+        <li class="dropdown">
+            <ul id="settings-dropdown" class="dropdown-menu">
+                <li>
+                    <a href="#" tabindex="-1">
+                        Profile
+                    </a>
+                </li>
+                <li>
+                    <a href="#" tabindex="-1">
+                        Settings
+                    </a>
+                </li>
+                <li>
+                    <a href="#" tabindex="-1">
+                        Help
+                    </a>
+                </li>
+                <li>
+                    <a href="#" tabindex="-1">
+                        Exit
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">
+                <i class="sidebar-icon md-inbox"></i>
+                Inbox
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="sidebar-icon md-star"></i>
+                Starred
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="sidebar-icon md-send"></i>
+                Sent Mail
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="sidebar-icon md-drafts"></i>
+                Drafts
+            </a>
+        </li>
+        <li class="divider"></li>
+        <li class="dropdown">
+            <a class="ripple-effect dropdown-toggle" href="#" data-toggle="dropdown">
+                All Mail
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="#" tabindex="-1">
+                        Social
+                        <span class="sidebar-badge">12</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" tabindex="-1">
+                        Promo
+                        <span class="sidebar-badge">0</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">
+                Trash
+                <span class="sidebar-badge">3</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                Spam
+                <span class="sidebar-badge">456</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                Follow Up
+                <span class="sidebar-badge badge-circle">i</span>
+            </a>
+        </li>
+    </ul>
+    <!-- Sidebar divider -->
+    <!-- <div class="sidebar-divider"></div> -->
+    
+    <!-- Sidebar text -->
+    <!--  <div class="sidebar-text">Text</div> -->
+</aside>
+      
+   </nav>
+   <div id="page-content">
+      
+      <router-outlet></router-outlet>
+   </div>
+
+

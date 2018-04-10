@@ -1,0 +1,16 @@
+<form class="login" [formGroup]="amenityForm" (submit)="sendAmenityForm(amenityForm)"> 
+      
+    <div><label for="username">Name</label>
+      <input type="text" name="username" id="username" formControlName="name"></div>
+    <div><label for="username">Description</label>
+      <input type="text" name="useremail" id="useremail" formControlName="description"></div>
+    <div><label for="username">Rate</label>
+      <input type="text" name="userlocation" id="userlocation" formControlName="rate"></div>
+   
+
+       
+    
+    <div class="actions">
+      <input type="submit" name="login" value="Add Room Amenity"> <!--<a href="/forgot">I forgot my password</a>-->
+    </div>
+</form>

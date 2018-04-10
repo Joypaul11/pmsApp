@@ -1,0 +1,11 @@
+td {
+    cursor: pointer;
+}
+
+td:hover {
+    background: #8deaed;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#8deaed), to(#9fedf0));
+    background: -moz-linear-gradient(#8deaed, #9fedf0);
+    background: linear-gradient(#8deaed, #9fedf0);
+    box-shadow: inset 0 0 0 1px #b9f2f5;
+  }

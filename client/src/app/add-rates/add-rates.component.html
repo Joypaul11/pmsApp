@@ -1,0 +1,12 @@
+<p>You have the followin rates: </p>
+<p><span *ngFor="let item of details.rates">{{ item }}, </span></p>
+<form>
+    <div class="form-group col-md-9">
+        <label for="email">Rate Type</label>
+        <input type="email" name="rateype" class="form-control" id="email" [(ngModel)]="rateType">
+      </div>
+
+      <div class="form-group col-md-6">
+          <button class="btn btn-primary" (click)="addRate()">Add Rate</button>
+        </div>
+</form>

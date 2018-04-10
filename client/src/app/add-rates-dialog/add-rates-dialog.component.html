@@ -1,0 +1,13 @@
+<div [formGroup]="adressForm">
+    <div class="form-group col-xs-6">
+        <label>Rate Type</label>
+        <input type="text" class="form-control" formControlName="rate_type">
+        <small [hidden]="adressForm.controls.street.valid" class="text-danger">
+            Street is required
+        </small>
+    </div>
+    <div class="form-group col-xs-6">
+        <label>Rate Value</label>
+        <input type="text" class="form-control" formControlName="rate_value">
+    </div>
+</div>

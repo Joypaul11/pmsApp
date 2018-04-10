@@ -1,0 +1,110 @@
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Profile
+                </mat-panel-title>
+             
+              </mat-expansion-panel-header>
+          
+              <mat-form-field>
+                <input matInput placeholder="First name">
+              </mat-form-field>
+          
+              <mat-form-field>
+                <input matInput placeholder="Age">
+              </mat-form-field>
+            </mat-expansion-panel>
+            <mat-expansion-panel (opened)="panelOpenState = true"
+                                 (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Bookings
+                </mat-panel-title>
+                
+              </mat-expansion-panel-header>
+              <button mat-raised-button (click)="profileState = 'addbooking'">Add Booking</button>
+            </mat-expansion-panel>
+          </mat-accordion>
+
+    </mat-drawer>
+  
+    <div class="main-grid">
+    <div>
+        
+        <button type="button" class="menu-button" mat-button (click)="drawer.toggle()">
+            Menu
+          </button>
+
+      </div>
+
+      <div>
+        
+
+
+
+        <app-profile *ngIf="profileState == 'profile'"></app-profile>
+        
+        <div *ngIf="profileState == 'addbooking'" class="container">
+          <h3>Booking Details</h3><hr>
+          <div class="form-group col-md-4">
+              <label for="exampleFormControlInput1">Name</label>
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="" >
+          </div>
+          
+          
+          
+          <div class="form-group col-md-4">
+              <label for="exampleFormControlInput1">Email Address</label>
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+          </div>
+
+          <div class='col-sm-6'>
+              <div class="form-group">
+                  <label>Start Date</label>
+                <p-calendar name="startDate" [(ngModel)]="bookingDetails.bookStartDate" [minDate]="value"  showTime="true" hourFormat="12"></p-calendar>
+              </div>
+          </div>
+          
+          <div class='col-sm-6'>
+              <div class="form-group">
+                  <label>End Date</label>
+                <p-calendar name="endDate" [(ngModel)]="bookingDetails.bookEndDate" [minDate]="value" showTime="true" hourFormat="12"></p-calendar>
+              </div>
+          </div>
+
+            <div class="form-group">
+              <label for="sel1">Select Room Type:</label>
+              <select name="roomSelector" class="form-control" id="sel1" [(ngModel)]="selIndex">
+                <option *ngFor="let item of allRooms; let i=index" [value]="i">{{ item.name }}</option>
+                
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="sel1">Select Room Number:</label>
+              <select name="roomSelector" class="form-control" id="sel1" [(ngModel)]="bookingDetails.room_number">
+                <option *ngFor="let item of allRooms[selIndex].room_numbers" value="{{ item }}">{{ item }}</option>
+                
+              </select>
+            </div>
+            
+            
+            <div class="form-group">
+              
+              <button class="form-control btn-primary btn-sm" (click)="addBooking()">Add Room</button>
+            </div>
+        </div>
+    
+    
+    
+    
+    
+     
+        </div>
+    </div>
+    </mat-drawer-container>
+
+   

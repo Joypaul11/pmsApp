@@ -1,0 +1,155 @@
+<!--
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="margin-20">
+        <h4>Add customer</h4>
+      </div>
+      <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" formControlName="name">
+          <small *ngIf="!myForm.controls.name.valid" class="text-danger">
+              Name is required (minimum 5 characters).
+            </small>
+        </div>
+        <div formArrayName="addresses">
+          <div *ngFor="let address of myForm.controls.addresses.controls; let i=index" class="panel panel-default">
+            <div class="panel-heading">
+              <span>Address {{i + 1}}</span>
+              <span class="glyphicon glyphicon-remove pull-right" *ngIf="myForm.controls.addresses.controls.length > 1" (click)="removeAddress(i)"></span>
+            </div>
+            <div class="panel-body" [formGroupName]="i">
+              <app-rate [group]="myForm.controls.addresses.controls[i]"></app-rate>
+            </div>
+          </div>
+        </div>
+
+        <div class="margin-20">
+          <a (click)="addAddress()" style="cursor: default">
+            Add another address +
+          </a>
+        </div>
+
+        <div class="margin-20">
+          <button type="submit" class="btn btn-primary pull-right" [disabled]="!myForm.valid">Submit</button>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="margin-20">
+          <div>myForm details:-</div>
+          <pre>Is myForm valid?: <br>{{myForm.valid | json}}</pre>
+          <pre>form value: <br>{{myForm.value | json}}</pre>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="col-md-12">
+
+  <mat-card class="example-card">
+     
+      <mat-card-header>
+          <div class="col-md-2">Room Type Name</div>
+          <div class="col-md-2">Base Price</div>
+          <div class="col-md-2">Extra Person Charge</div>
+          <div class="col-md-2">Extra Bed Charge</div>
+          <div class="col-md-2">No. of Rooms</div>
+          <div class="col-md-2">Occupancy</div>
+        </mat-card-header>
+    </mat-card>
+<form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
+    <div formArrayName="rooms">
+        <div *ngFor="let room of myForm.controls.rooms.controls; let i=index">
+            <div [formGroupName]="i">
+<mat-card class="example-card" >
+  
+  <mat-card-header>
+      <div class="col-md-2"> 
+        <mat-form-field class="example-full-width">
+          <input matInput name="nameAddRoom" formControlName="name">
+        </mat-form-field>
+      </div>
+      <div class="col-md-2">
+          <mat-form-field class="example-full-width">
+              <input matInput placeholder="Rs" name="basepriceAddRoom" formControlName="base_price" >
+            </mat-form-field>
+      </div>
+      <div class="col-md-2">
+          <mat-form-field class="example-full-width">
+              <input matInput placeholder="Rs" name="expaersonchargeAddRoom" formControlName="ex_person_charge">
+            </mat-form-field>
+      </div>
+      
+      <div class="col-md-2">
+          <mat-form-field class="example-full-width">
+              <input matInput placeholder="Rs" name="exbedchargeAddRoom" formControlName="ex_bed_charge">
+            </mat-form-field>
+      </div>
+      <div class="col-md-2">
+          <mat-form-field class="example-full-width">
+              <input matInput name="noforoomsAddRoom" formControlName="no_of_rooms">
+            </mat-form-field>
+      </div>
+      <div class="col-md-2">
+          
+              
+                  <mat-form-field>
+                <input matInput placeholder="Base" name="occupbaseAddRoom" formControlName="occup_base">
+                </mat-form-field>
+            
+    
+                  <mat-form-field>
+                <input matInput placeholder="Max" name="occupmaxAddRoom" formControlName="occup_max">
+                </mat-form-field>
+          
+                  <mat-form-field>
+                <input matInput placeholder="ex Bed(s)" name="occupexbedsAddRoom" formControlName="occup_ex_beds">
+                </mat-form-field>
+   
+          
+      </div>
+      
+      <div class="col-md-1 link-btn">
+          <a (click)="openRateModal()">Additional Info</a>
+      </div>
+      
+  </mat-card-header>
+ 
+</mat-card>
+</div>
+</div>
+</div>
+</form>
+</div>
+
+
+
+<div class="button-row">
+
+  <button mat-mini-fab color="primary" (click)="addRoom()">+</button>
+
+</div>
+
+<div class="button-row-two">
+
+  <button mat-raised-button color="primary" type="submit">Add Rooms</button>
+
+</div>

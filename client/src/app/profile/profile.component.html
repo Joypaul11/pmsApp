@@ -1,3 +1,4 @@
+<!--
 <div class="container">
   <div class="row">
     
@@ -14,9 +15,782 @@
           <label class="col-sm-3 control-label">Email</label>
           <p class="form-control-static">{{ details?.email }}</p>
         </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Location</label>
+          <p class="form-control-static">{{ details?.location }}</p>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Room Categories</label>
+          <p class="form-control-static inliner" *ngFor="let item of details?.roomCategory">{{ item }} </p>
+          <button class="btn-sm btn-primary">Modify</button>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Room Count</label>
+          <p class="form-control-static inliner" *ngFor="let item of details?.roomCount">{{ item }} </p>
+          <button class="btn-sm btn-primary">Modify</button>
+        </div>
       </div>
 
     </div>
 
   </div>
 </div>
+-->
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Profile
+                </mat-panel-title>
+             
+              </mat-expansion-panel-header>
+          
+              <button mat-raised-button (click)="profileState = 'profile'">Frontdesk</button>
+              <button mat-raised-button (click)="profileState = 'dashboard'">Profile</button>
+
+
+            </mat-expansion-panel>
+            <mat-expansion-panel (opened)="panelOpenState = true"
+                                 (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Bookings
+                </mat-panel-title>
+                
+              </mat-expansion-panel-header>
+              <button mat-raised-button (click)="profileState = 'addbooking'">Add Booking</button>
+            </mat-expansion-panel>
+            
+
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Properties
+                </mat-panel-title>
+                
+              </mat-expansion-panel-header>
+              <button mat-raised-button (click)="profileState = 'addrooms'">Add Rooms</button>
+
+              <button mat-raised-button (click)="profileState = 'addproperty'">Add Property</button> <br><br>
+              <button  mat-raised-button (click)="goToAddRate()">Add Rates</button>
+ 
+              <label for="sel1">Select Property</label>
+
+              
+              <select name="roomSelector" class="form-control" id="sel1" (change)="selectProperty($event.target.value)">
+                <option *ngFor="let item of details.properties" value="{{ item }}">{{ item }}</option>
+                
+              </select>
+            </mat-expansion-panel>
+          </mat-accordion>
+
+
+
+
+
+
+
+          
+      
+    </mat-drawer>
+  
+    <div class="main-grid">
+
+
+
+    <div >
+        <button *ngIf="profileState === 'addrooms' " type="button"  color="primary" mat-raised-button (click)="drawer.toggle()">
+            Menu
+          </button> <br>
+
+          <!--
+          <mat-list>
+              <h3 mat-subheader>Bookings</h3>
+              <mat-list-item *ngFor="let item of allBookingsData.slice().reverse()">
+                <h4 mat-line>{{item.room_name}} Room {{ item.room_number }} for {{item.name}}</h4>
+                <p mat-line>{{item.bookStartDate | date:'medium'}} to {{item.bookEndDate | date:'medium'}}</p>
+              </mat-list-item>
+            </mat-list> -->
+
+        <!--
+        <h3>Bookings</h3><hr>
+        <div *ngFor="let item of allBookingsData">
+          <p>{{item.room_name}} room {{ item.room_number }} booked</p>
+          <p>From {{item.bookStartDate | date:'medium'}}</p>
+          <p>To {{item.bookEndDate | date:'medium'}}</p>
+          <hr>
+        </div>
+      -->
+      </div>
+
+      <div>
+      
+        <!--
+      <p-schedule *ngIf="profileState == 'profile'" [events]="events" [header]="headerConfig" [editable]=true></p-schedule> 
+      <div id='calendar'></div> -->
+          <div *ngIf="profileState == 'profile'">
+     <table id="main-table">
+       <tr>
+         <td>
+            <td colspan="30" style="text-align: center">
+                <table style="white-space: nowrap; width: 100%">
+                  <tr>
+                    <td style="text-align: left;">
+                      <span class="btn-group">
+                        <button class="js-cal-prev btn btn-default" (click)="calendarScroll(-1)">&lt;</button>
+                        <button class="js-cal-next btn btn-default" (click)="calendarScroll(1)">&gt;</button>
+                      </span>
+                      <button class="js-cal-option btn btn-default" data-mode="month" (click)="calendarUnscroll(-1)">Today</button>
+                    </td>
+                    <td>
+                      <span class="btn-group btn-group-lg">
+                       
+                      </span>
+                    </td>
+                    <td style="text-align: right">
+                      <span class="btn-group">
+                        <button class="js-cal-option btn btn-default" (click)="setCalendarAgain('month', 0)">Month</button>
+                        <button class="js-cal-option btn btn-default" (click)="setCalendarAgain('week', 0)">Week</button>
+                        <button class="js-cal-option btn btn-default" (click)="setCalendarAgain('day', 0)">Day</button>
+                      </span>
+                    </td>
+                  </tr>
+                </table>
+         </td>
+       </tr>
+       <!--
+       <tr>
+         <td>Options</td>
+         <td><button class="btn btn-sm btn-default" (click)="calendarScroll(-1)">Prev</button></td>
+         <td><button class="btn btn-sm btn-default" (click)="setCalendarAgain('week', 0)">By Week</button></td>
+         <td><button class="btn btn-sm btn-default" (click)="setCalendarAgain('month', 0)">By Month</button></td>
+         <td><button class="btn btn-sm btn-default" (click)="setCalendarAgain('day', 0)">By Day</button></td>
+         <td><button class="btn btn-sm btn-default" (click)="calendarScroll(1)">Next</button></td>
+        </tr> 
+       <tr>Booked</tr> -->
+
+       <tr><td>Dates</td><td *ngFor="let item of appDate" [ngClass]="{'today-class': item.today == true}">{{ item.day }}</td></tr>
+       <ng-container *ngFor="let group of allRooms; let r=index">
+        <tr>{{group.room_name}}</tr>
+        <tr *ngFor="let item of group.room_numbers; let o=index">
+          <td>{{item}}</td>
+          <td #tableCell *ngFor="let box of boxes; let m=index" [ngClass]="{'ui-state-default': true, 'today-class': box.today == true, 'booked-class' : box.state == 'booked' && box.value == item}" id="cell-{{r}}-{{o}}-{{m}}" (mousedown)="mousePress($event)" (mouseenter)="mouseHover($event)" (mouseup)="mouseUnpress($event)"></td>
+        </tr>
+    </ng-container>
+     </table>
+    </div>
+        
+      <div *ngIf="profileState == 'addbooking'" class="container text-center right-side">
+          
+          <h3>Booking Details</h3><hr>
+
+          <div class="form-group col-md-6">
+              <label for="exampleFormControlInput1">Name</label>
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="" [(ngModel)]="bookingDetails.name">
+          </div>
+          
+          
+          
+          <div class="form-group col-md-6">
+              <label for="exampleFormControlInput1">Email Address</label>
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="" [(ngModel)]="bookingDetails.email">
+          </div>
+
+          <div class='col-sm-6'>
+              <div class="form-group">
+                  <label>Start Date</label>
+                <p-calendar name="startDate" [(ngModel)]="bookingDetails.bookStartDate" [minDate]="value"  showTime="true" hourFormat="12"></p-calendar>
+              </div>
+          </div>
+          
+          <div class='col-sm-6'>
+              <div class="form-group">
+                  <label>End Date</label>
+                <p-calendar name="endDate" [(ngModel)]="bookingDetails.bookEndDate" [minDate]="value" showTime="true" hourFormat="12"></p-calendar>
+              </div>
+          </div>
+
+            <div class="form-group col-md-6">
+              <label for="sel1">Select Room Type:</label>
+              <select name="roomSelector" class="form-control" id="sel1" [(ngModel)]="selIndex">
+                <option *ngFor="let item of allRooms; let i=index" [value]="i">{{ item.name }}</option>
+                
+              </select>
+            </div>
+            
+            <div class="form-group col-md-6">
+              <label for="sel1">Select Room Number:</label>
+              <select *ngIf="allRooms[selIndex]" name="roomSelector" class="form-control" id="sel1" [(ngModel)]="bookingDetails.room_number">
+                <option *ngFor="let item of allRooms[selIndex].room_numbers" value="{{ item }}">{{ item }}</option>
+                
+              </select>
+            </div>
+            
+            <div class="form-group col-md-6 text-center">
+              
+              <button class="form-control btn-primary btn-sm" (click)="addBooking()">Add Booking</button>
+            </div>
+
+        </div>
+
+
+        <div *ngIf="profileState == 'dashboard'" class="container">
+            <div class="row">
+              <div class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
+                 <div class="well profile">
+                      <div class="col-sm-12">
+                          <div class="col-xs-12 col-sm-8">
+                              <h2>{{ details?.name }}</h2>
+                              <p><strong>Address: </strong> {{ details?.location }} </p>
+                              <p><strong>Mail ID: </strong> {{ details?.email }} </p>
+                              <p><strong>Properties: </strong>
+                                <select name="roomSelector" class="form-control" id="sel1" (change)="selectProperty($event.target.value)">
+                                    <option *ngFor="let item of details.properties" value="{{ item }}">{{ item }}</option>
+                                    
+                                  </select>
+                                 
+                              </p>
+                          </div>             
+                          <div class="col-xs-12 col-sm-4 text-center">
+                              <figure>
+                                  <img src="http://www.localcrimenews.com/wp-content/uploads/2013/07/default-user-icon-profile.png" alt="" class="img-circle img-responsive">
+                                  <figcaption class="ratings">
+                                      <p>Ratings
+                                      <a href="#">
+                                          <span class="fa fa-star"></span>
+                                      </a>
+                                      <a href="#">
+                                          <span class="fa fa-star"></span>
+                                      </a>
+                                      <a href="#">
+                                          <span class="fa fa-star"></span>
+                                      </a>
+                                      <a href="#">
+                                          <span class="fa fa-star"></span>
+                                      </a>
+                                      <a href="#">
+                                           <span class="fa fa-star-o"></span>
+                                      </a> 
+                                      </p>
+                                  </figcaption>
+                              </figure>
+                          </div>
+                      </div>            
+                      <div class="col-xs-12 divider text-center">
+                          <div *ngFor="let item of allRooms" class="col-xs-12 col-sm-4 emphasis">
+                              <h2><strong>{{ item.no_of_rooms }}</strong></h2>                    
+                              <p><small>{{ item.name }}</small></p>
+                          </div>
+                         
+                      </div>
+                 </div>                 
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+        <div *ngIf="profileState == 'addproperty'" class="container right-side">
+            <h3>Property Details</h3><hr>
+            <div class="form-group col-md-6">
+                <label for="exampleFormControlInput1">Name of Property</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="" [(ngModel)]="newProperty">
+            </div>
+            
+            <div class="form-group col-md-6">
+                <label for="exampleFormControlInput1">Address</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+            
+            <div class="form-group col-md-6">
+                <label for="exampleFormControlInput1">Contact Number</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="exampleFormControlInput1">Email Address</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+  
+            <div class="col-md-6"></div>
+              <div class="form-group col-md-6">
+                
+                <button class="form-control btn-primary btn-sm" (click)="addProperty()">Add Property</button>
+              </div>
+          </div>
+
+          <div *ngIf="profileState == 'bypass'" class="container right-side">
+       
+            
+            <h3>Room Details</h3><hr>
+
+            <form [formGroup]="myForm" novalidate (ngSubmit)="addRoomSubmit(myForm)">
+            <div class="form-group col-md-6">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Room Name" formControlName="room_name">
+              </div>
+
+              
+              <!--
+              <div class="form-group col-md-6">
+                  <label for="sel1">Select Amenities</label>
+                  <angular2-multiselect [data]="itemList" [(ngModel)]="selectedItems" 
+                  [settings]="settings" 
+                  (onSelect)="onItemSelect($event)"
+                  (onDeSelect)="OnItemDeSelect($event)" 
+                  (onSelectAll)="onSelectAll($event)" 
+                  (onDeSelectAll)="onDeSelectAll($event)" formControlName="amenities">
+</angular2-multiselect>
+</div> -->
+              
+              <div class="form-group col-md-6">
+                  <label for="beds">No of Rooms</label>
+                  <input type="text" class="form-control" id="beds" name="norooms" placeholder="Room quantity" formControlName="no_of_rooms">
+                </div>
+
+              <div class="form-group col-md-6">
+                <label for="type">Base Price</label>
+                <input type="text" class="form-control" id="type" name="price" placeholder="Room Type" formControlName="base_price">
+              </div>
+              
+          
+              
+              <div class="form-group col-md-6">
+                  <label for="type">Extra Person Charge</label>
+                  <input type="text" class="form-control" id="type" name="experch" placeholder="Room Type" formControlName="ex_person_charge">
+                </div>
+              
+                <div class="form-group col-md-6">
+                    <label for="type">Extra Bed Charge</label>
+                    <input type="text" class="form-control" id="type" name="exbedch" placeholder="Room Type" formControlName="ex_bed_charge">
+                  </div>
+              
+                  <div class="form-group col-md-4">
+                      <label for="type">Base Occupancy</label>
+                      <input type="text" class="form-control" id="type" name="occupbas" placeholder="Room Type" formControlName="occup_base">
+                    </div>
+
+
+                    <div class="form-group col-md-4">
+                        <label for="type">Max Occupancy</label>
+                        <input type="text" class="form-control" id="type" name="occupmax" placeholder="Room Type" formControlName="occup_max">
+                      </div>
+
+                      <div class="form-group col-md-4">
+                          <label for="type">Max Extra Beds</label>
+                          <input type="text" class="form-control" id="type" name="occupex" placeholder="Room Type" formControlName="occup_ex_beds">
+                        </div>
+
+                        <div formArrayName="rates">
+                            <div *ngFor="let rate of myForm.get('rates').controls; let j=index">
+                                <div [formGroupName]="j">  
+
+                        <div class="form-group col-md-4">
+                            <label for="type">Rate Type</label>
+                            <input type="text" class="form-control" id="type" name="ratetype" placeholder="Rate Type" disabled formControlName="rate_type">
+                          </div>
+    
+                          
+                          
+
+                        <div class="form-group col-md-4">
+                            <label for="type">Rate Value</label>
+                            <input type="text" class="form-control" id="type" name="occupex" placeholder="Rate Value" formControlName="rate_value">
+                          </div>
+
+                          <div class="form-group col-md-4">
+                              <label for="type">VAT Rate</label>
+                              <input type="text" class="form-control" id="type" name="occupex" placeholder="Rate Value" formControlName="vat_rate">
+                            </div>
+                      
+
+                          </div>
+                          </div>
+                          </div>
+
+              <div class="form-group text-center col-md-6">
+                
+                <button class="form-control btn-primary btn-sm" type="submit">Add Room</button>
+              </div> 
+
+              </form>
+          </div>
+          
+    
+    </div>
+    </div>
+  
+  </mat-drawer-container>
+
+<!--Profile Card https://codepen.io/vivekmengu/pen/mPpaVp?q=profile+page&limit=all&type=type-pens -->
+
+  <div class="container">
+    <div class="innerwrap">
+      <section class="section1 clearfix">
+        <div>
+          <div class="row grid clearfix">
+            <div class="col2 first">
+              <img src="http://images.contactmusic.com/newsimages/david_beckham_1133321.jpg" alt="">
+              <h1>{{ details?.name }}</h1>
+
+           
+              
+              <label for="sel1">Select Property</label>
+
+              <!--
+              <select name="roomSelector" class="form-control" id="sel1" (change)="selectProperty($event.target.value)">
+                <option *ngFor="let item of details.properties" value="{{ item }}">{{ item }}</option>
+                
+              </select> -->
+              
+
+              <label>New Property Name</label>
+              <input type="text" class="form-control input-sm" [(ngModel)]="newProperty">
+
+
+              <p>MailID: {{ details?.email }}<br>Address: {{ details?.location }}</p>
+              <button type="button" class="btn btn-info btn-sm" (click)="getUnbookedRooms()">Get Unbooked Rooms</button>
+              <button type="button" class="btn btn-info btn-sm" (click)="updateProfile()">Update Profile</button>
+
+              <button type="button" class="btn btn-info btn-sm" (click)="showRooms()">Show all Rooms</button>
+              <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addRoomModal">Add Room</button>
+              <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addBookingModal">Add Booking</button>
+              <button type="button" class="btn btn-info btn-sm" (click)="showBookings()">Show Bookings</button>
+              <button type="button" class="btn btn-info btn-sm" (click)="showAllBookings()">Show All Bookings</button>
+              <button type="button" class="btn btn-info btn-sm" (click)="addProperty()">Add Property</button>
+
+            </div>
+            <div class="col2 last">
+              <div class="grid clearfix">
+                <div *ngFor="let item of allRooms; let i=index" class="col3 first">
+                  <h1>{{ item.name }}</h1>
+                  <span>{{ item.no_of_rooms }}</span>
+                </div>
+               
+              </div>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="row2tab clearfix">
+               
+            </div>
+          </div>
+        </div>
+        <span class="smalltri">
+          
+        <i class="fa fa-star"></i>
+        </span>
+      </section>
+
+      <div>
+        <h1>All Bookings</h1>
+        <div *ngFor="let item of allBookingsData">
+          <p>{{item.room_name}} room {{ item.room_number }} booked</p>
+          <p>From {{item.bookStartDate | date:'medium'}}</p>
+          <p>To {{item.bookEndDate | date:'medium'}}</p>
+          <hr>
+        </div>
+
+      </div>
+
+      
+       <!-- Modal 
+<div id="addRoomModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add Room</h4>
+      </div>
+      <div class="modal-body">
+
+
+        <form>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Room Name" [ngModel]="newRoom?.name" (ngModelChange)="newRoom.name = $event">
+          </div>
+          
+          <div class="form-group">
+            <label for="type">Type</label>
+            <input type="text" class="form-control" id="type" name="type" placeholder="Room Type" [ngModel]="newRoom?.type" (ngModelChange)="newRoom.type = $event">
+          </div>
+          
+          <div class="form-group">
+            <label for="beds">No of Rooms</label>
+            <input type="text" class="form-control" id="beds" name="beds" placeholder="Room quantity" [ngModel]="newRoom?.beds" (ngModelChange)="newRoom.beds = $event">
+          </div>
+          
+         
+          
+          <div class="form-group">
+            <label for="cost">Rate</label>
+            <input type="number" class="form-control" id="cost" name="cost" [ngModel]="newRoom?.cost" (ngModelChange)="newRoom.cost = $event">
+          </div>
+          
+          <div class="form-group">
+            <label for="img">Image</label>
+            <input type="text" class="form-control" id="img" name="img" placeholder="Image URL" [ngModel]="newRoom?.img" (ngModelChange)="newRoom.img = $event">
+          </div>
+
+          <div class="form-group">
+            <label for="sel1">Select Property</label>
+            <select name="roomSelector" class="form-control" id="sel1" [(ngModel)]="newRoom.property">
+              <option *ngFor="let item of details.properties" value="{{ item }}">{{ item }}</option>
+              
+            </select>
+          </div>
+          
+          <div class="form-group">
+            
+            <button class="form-control btn-primary btn-sm" (click)="addRoom()">Add Room</button>
+          </div>
+
+          
+          
+        </form>
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+        Modal -->
+       <div id="addBookingModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+      
+          
+          <div class="modal-content">
+            <div class="modal-header">
+              
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Add Booking</h4>
+            </div>
+            <div class="modal-body">
+      
+
+      
+              <form>
+                  <div class="form-group">
+                      <label for="name">Name</label>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Name" [(ngModel)]="bookingDetails.name">
+                    </div>
+
+                <div class="form-group">
+                  <label for="name">EMail</label>
+                  <input type="text" class="form-control" id="name" name="name" placeholder="Email ID" [(ngModel)]="bookingDetails.email">
+                </div>
+
+                <div class='col-sm-6'>
+                  <div class="form-group">
+                      <label>Start Date</label>
+                    <p-calendar name="startDate" [(ngModel)]="bookingDetails.bookStartDate" [minDate]="value"  showTime="true" hourFormat="12"></p-calendar>
+                  </div>
+              </div>
+              
+              <div class='col-sm-6'>
+                  <div class="form-group">
+                      <label>End Date</label>
+                    <p-calendar name="endDate" [(ngModel)]="bookingDetails.bookEndDate" [minDate]="value" showTime="true" hourFormat="12"></p-calendar>
+                  </div>
+              </div>
+
+                <div class="form-group">
+                  <label for="sel1">Select Room Type:</label>
+                  <select name="roomSelector" class="form-control" id="sel1" [(ngModel)]="selIndex">
+                    <option *ngFor="let item of allRooms; let i=index" [value]="i">{{ item.name }}</option>
+                    
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label for="sel1">Select Room Number:</label>
+                  <select *ngIf="allRooms[selIndex]" name="roomSelector" class="form-control" id="sel1" [(ngModel)]="bookingDetails.room_number">
+                    <option *ngFor="let item of allRooms[selIndex].room_numbers" value="{{ item }}">{{ item }}</option>
+                    
+                  </select>
+                </div>
+                
+                
+                <div class="form-group">
+                  
+                  <button class="form-control btn-primary btn-sm" (click)="addBooking()">Add Room</button>
+                </div>
+              </form>
+             
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+
+<!-- Modal ends -->
+
+      <!-- Modal 
+<div id="editInfoModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Profile Info</h4>
+      </div>
+      <div class="modal-body">
+
+
+
+          <div class="col-md-8">
+              <label for="validationDefault01">First name</label>
+              <input type="text" class="form-control" id="validationDefault01" placeholder="First name" name="userName" [(ngModel)]="" required>
+            </div>
+
+            <div class="col-md-8" *ngFor="let type of details.roomCategory; let i=index">
+              <div class="col-md-4" >
+                  <input class="input-sm" placeholder="Room Type" name="categoryRoom" [(ngModel)]="details.roomCategory[i]">
+              </div>
+
+              <div class="col-md-3">
+                  <input class="input-sm" placeholder="Room Count" name="countRoom" [(ngModel)]="details.roomCount[i]">
+              </div>
+            </div>
+
+
+  
+  
+  
+
+
+
+  <div id="unison_user_fields" class="col-md-12" *ngFor="let count of divCount; let i = index" [attr.data-index]="i">
+      <div class="col-sm-4 nopadding">
+          <div class="form-group">
+            <input type="text" class="form-control input-sm" id="EmailId"  name="{{ 'email_' + i }}"  value="" placeholder="Enter Email ID">
+          </div>
+        </div>
+
+        <div class="col-sm-4 nopadding">
+          <div class="form-group">
+            <input type="text" class="form-control input-sm" id="city"  name="{{ 'city_' + i }}"  value="" placeholder="Enter city">
+          </div>
+        </div>
+
+        
+
+        
+
+       
+       
+
+        <div class="col-sm-1 nopadding">
+            <img class="add-btn" src="assets/images/minus-btn.png" type="button"  (click)="removeUserField()">
+        </div>
+        <div class="clear"></div>  
+        <br/>
+  </div>
+
+
+  <div class="col-md-12">
+
+  <div class="col-sm-4 nopadding">
+    <div class="form-group">
+      <input type="text" class="form-control input-sm" id="EmailId"  name="emailname"  value="" placeholder="Enter Email ID">
+    </div>
+  </div>
+
+  <div class="col-sm-4 nopadding">
+    <div class="form-group">
+      <input type="text" class="form-control input-sm" id="city"  name="cityname"  value="" placeholder="Enter city">
+    </div>
+  </div>
+
+  
+
+ 
+
+  
+ 
+
+  <div class="col-sm-1 nopadding">
+      <img class="add-btn" src="assets/images/add-btn.png" type="button"  (click)="addUserField()">
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal ends -->
+      
+    </div>
+  </div>	
+  
+
+  <p-schedule [events]="events" [header]="headerConfig" [editable]=true></p-schedule>
+
+  <app-scheduler></app-scheduler>
+
+  <modal id="custom-modal-1">
+    <div class="modal">
+        <div class="modal-body">
+            <h1>A Custom Modal!</h1>
+            <p>
+                Home page text: <input type="text" [(ngModel)]="bodyText" />
+            </p>
+            <button (click)="closeModal('custom-modal-1');">Close</button>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>
+
+<!--
+<div class="tableOverlay" [ngStyle]="myStyles"><p>I am a tabke overlay</p></div>
+-->

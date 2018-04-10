@@ -10,16 +10,30 @@ export interface UserDetails {
   name: string;
   exp: number;
   iat: number;
+  properties: string[];
+  rates: string[];
+  user_type: string[];
 }
 
 interface TokenResponse {
   token: string;
 }
 
+export interface RegisterTokenPayload {
+  email: string;
+  user_type: string;
+  password: string;
+  name?: string;
+  location?: string;
+  properties?: string[];
+}
+
 export interface TokenPayload {
   email: string;
   password: string;
   name?: string;
+  location?: string;
+  properties?: string[];
 }
 
 @Injectable()
@@ -29,13 +43,13 @@ export class AuthenticationService {
   constructor(private http: HttpClient, private router: Router) {}
 
   private saveToken(token: string): void {
-    localStorage.setItem('mean-token', token);
+    sessionStorage.setItem('mean-token', token);
     this.token = token;
   }
 
   private getToken(): string {
     if (!this.token) {
-      this.token = localStorage.getItem('mean-token');
+      this.token = sessionStorage.getItem('mean-token');
     }
     return this.token;
   }
@@ -78,8 +92,8 @@ export class AuthenticationService {
         return data;
       })
     );
-
     return request;
+
   }
 
   public register(user: TokenPayload): Observable<any> {
@@ -96,7 +110,8 @@ export class AuthenticationService {
 
   public logout(): void {
     this.token = '';
-    window.localStorage.removeItem('mean-token');
+    window.sessionStorage.removeItem('mean-token');
     this.router.navigateByUrl('/');
   }
+
 }

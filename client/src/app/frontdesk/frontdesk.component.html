@@ -1,0 +1,129 @@
+<div class="navbar navbar-default">
+  <div class="container">
+    <div id="navbar-main">
+      <ul class="nav navbar-nav">
+        <li><a routerLink="/">Home</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="!auth.isLoggedIn()"><a routerLink="/login">Sign in</a></li>
+        <li *ngIf="auth.isLoggedIn()"><a routerLink="/profile">{{ auth.getUserDetails()?.name }}</a></li>
+        <li *ngIf="isAdmin"><a routerLink="/admin-dashboard">Admin Console</a></li>
+        
+        <li *ngIf="auth.isLoggedIn()"><a (click)="auth.logout()">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="main-grid">
+
+  <div>
+   <form #myForm="ngForm" novalidate>
+      <my-date-picker name="mydate" [options]="myDatePickerOptions"
+      (dateChanged)="onDateChanged($event)" required></my-date-picker>
+  </form>
+
+  
+<div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Room Operations
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action active">
+            Cras justo odio
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+          <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+          <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+          <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Others
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+
+<div id="reservation-table">
+    <table id="main-table">
+      <tr>
+        <td>
+           <td colspan="30" style="text-align: center">
+               <table style="white-space: nowrap; width: 100%">
+                 <tr>
+                   <td style="text-align: left;">
+                     <span class="btn-group">
+                       <button class="js-cal-prev btn btn-default" (click)="calendarScroll(-1)">&lt;</button>
+                       <button class="js-cal-next btn btn-default" (click)="calendarScroll(1)">&gt;</button>
+                     </span>
+                     <button class="js-cal-option btn btn-default" data-mode="month" (click)="calendarUnscroll(-1)">Today</button>
+                   </td>
+                   <td>
+                     <span class="btn-group btn-group-lg">
+                      
+                     </span>
+                   </td>
+                   <td style="text-align: right">
+                     <span class="btn-group">
+                       <button class="js-cal-option btn btn-default" (click)="setCalendarAgain('month', 0)">Month</button>
+                       <button class="js-cal-option btn btn-default" (click)="setCalendarAgain('week', 0)">Week</button>
+                       <button class="js-cal-option btn btn-default" (click)="setCalendarAgain('day', 0)">Day</button>
+                     </span>
+                   </td>
+                 </tr>
+               </table>
+        </td>
+      </tr>
+      <!--
+      <tr>
+        <td>Options</td>
+        <td><button class="btn btn-sm btn-default" (click)="calendarScroll(-1)">Prev</button></td>
+        <td><button class="btn btn-sm btn-default" (click)="setCalendarAgain('week', 0)">By Week</button></td>
+        <td><button class="btn btn-sm btn-default" (click)="setCalendarAgain('month', 0)">By Month</button></td>
+        <td><button class="btn btn-sm btn-default" (click)="setCalendarAgain('day', 0)">By Day</button></td>
+        <td><button class="btn btn-sm btn-default" (click)="calendarScroll(1)">Next</button></td>
+       </tr> 
+      <tr>Booked</tr> -->
+      <tr><td colspan="30">{{ appDate[0]?.month }} {{ appDate[0]?.day }} - {{ appDate[appDate.length -1]?.month }} {{appDate[appDate.length - 1 ]?.day}}</td></tr>
+       
+      <tr><td>Dates</td><td *ngFor="let item of appDate" [ngClass]="{'today-class': item.today == true}">{{ item.day }}</td></tr>
+      <ng-container *ngFor="let group of allRooms; let r=index">
+       <tr>{{group.room_name}}</tr>
+       <tr *ngFor="let item of group.room_numbers; let o=index">
+         <td>{{item}}</td>
+         <td #tableCell *ngFor="let box of boxes; let m=index" [ngClass]="{'ui-state-default': true, 'today-class': box.today == true, 'booked-class' : box.state == 'booked' && box.value == item}" id="cell-{{r}}-{{o}}-{{m}}" (mousedown)="mousePress($event)" (mouseenter)="mouseHover($event)" (mouseup)="mouseUnpress($event)"></td>
+       </tr>
+   </ng-container>
+    </table>
+   </div>
+
+
+   </div>
+
+   <app-calendar></app-calendar>

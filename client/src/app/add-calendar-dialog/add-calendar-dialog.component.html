@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>  {{data.startDate}} --> {{data.endDate}}</h1>
+<mat-dialog-content>
+
+  <label for="sel1">Type</label>
+
+              
+  <select name="roomSelector" class="form-control" id="sel1" [(ngModel)]="inputSel">
+    <option value="book">Book</option>
+    <option value="reserve">Reserve</option>
+    <option value="checkin">Check In</option>
+    <option value="checkout">Check Out</option>
+    
+  </select>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="changeView()">Next</button>
+  
+</mat-dialog-actions>

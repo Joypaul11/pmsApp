@@ -1,0 +1,8 @@
+<table class="table">
+  <thead>
+    <tr><th>Rate Type/Room Type</th><th *ngFor="let rate of details.rates">{{rate}}</th></tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let room of allRooms; let r=index"><th>{{ room.room_name }}</th><td *ngFor="let roomRate of room.rates; let rr=index" (click)="getRate($event)" id="{{r}}-{{rr}}">{{ roomRate.rate_value }}</td></tr>
+  </tbody>
+</table>

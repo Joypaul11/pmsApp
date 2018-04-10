@@ -1,0 +1,91 @@
+<form [formGroup]="myForm" (ngSubmit)="addBooking(myForm)">
+
+    <div class="form-group col-md-3">
+        <label for="email">Title:</label>
+        <input type="text" class="form-control" id="email" formControlName="title">
+      </div>
+
+      <div class="form-group col-md-3">
+          <label for="email">Firstname:</label>
+          <input type="email" class="form-control" id="email" formControlName="firstname">
+        </div>
+
+        <div class="form-group col-md-3">
+            <label for="email">Middlename:</label>
+            <input type="email" class="form-control" id="email" formControlName="middlename">
+          </div>
+
+          <div class="form-group col-md-3">
+              <label for="email">Lastname:</label>
+              <input type="email" class="form-control" id="email" formControlName="lastname">
+            </div>
+
+            <hr>
+
+            <div class="form-group col-md-6">
+                <label for="email">Arrival:</label>
+                <input type="date" class="form-control" id="email" formControlName="arrival">
+              </div>
+
+              <div class="form-group col-md-6">
+                  <label for="email">Departure:</label>
+                  <input type="date" class="form-control" id="email" formControlName="departure">
+                </div>
+            
+              <hr>
+
+            <div class="form-group col-md-4">
+                <label for="email">Email address:</label>
+                <input type="email" class="form-control" id="email" formControlName="email">
+              </div>
+
+              <div class="form-group col-md-4">
+                  <label for="email">Contact No:</label>
+                  <input type="email" class="form-control" id="email" formControlName="contact">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="email">Nationality:</label>
+                    <input type="email" class="form-control" id="email" formControlName="nationality">
+                  </div>
+
+
+                <div class="form-group col-md-4">
+                    <label for="email">Room Type:</label>
+                    <input type="email" class="form-control" id="email" formControlName="room_type">
+                  </div>
+
+
+                <div class="form-group col-md-4">
+                    <label for="email">Room Number:</label>
+                    <input type="email" class="form-control" id="email" formControlName="room_number">
+                  </div>
+
+
+                <div class="form-group col-md-4">
+                    <label for="email">Rate Type:</label>
+                    <input type="email" class="form-control" id="email" formControlName="rate_type">
+                  </div>
+
+                  <div class="form-group col-md-6">
+                      <label for="email">Adults:</label>
+                      <input type="email" class="form-control" id="email" formControlName="adults">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="email">Adults:</label>
+                        <input type="email" class="form-control" id="email" formControlName="children">
+                      </div>
+
+
+
+                  <div class="form-group">
+                <button (click)="showRates()" class="btn btn-default">Select Rate</button>
+                    </div>
+        
+        
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Add Booking</button>
+                            </div>
+
+</form>
