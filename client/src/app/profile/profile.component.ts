@@ -5,6 +5,7 @@ import { SendService } from '../_services/send.service';
 import {CalendarModule as TheCalendar} from 'primeng/calendar';
 import {ScheduleModule} from 'primeng/schedule';
 import {MatButtonModule} from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatListModule} from '@angular/material/list';
@@ -199,44 +200,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     .subscribe (
       data => {
         this.amenities = data;
-        let i = 1;
-        for (let item of this.amenities) {
-          this.dropdownList.push(
-            {
-              'id': i,
-              'itemName': item.name
-
-            }
-          );
-        }
-        this.dropdownList = [
-          {"id":1,"itemName":"India"},
-          {"id":2,"itemName":"Singapore"},
-          {"id":3,"itemName":"Australia"},
-          {"id":4,"itemName":"Canada"},
-          {"id":5,"itemName":"South Korea"},
-          {"id":6,"itemName":"Germany"},
-          {"id":7,"itemName":"France"},
-          {"id":8,"itemName":"Russia"},
-          {"id":9,"itemName":"Italy"},
-          {"id":10,"itemName":"Sweden"}
-        ];
-        this.selectedItems = [
-          {"id":2,"itemName":"Singapore"},
-          {"id":3,"itemName":"Australia"},
-          {"id":4,"itemName":"Canada"},
-          {"id":5,"itemName":"South Korea"}
-      ];
-        console.log(this.dropdownList);
-      
-        this.dropdownSettings = {
-              singleSelection: false, 
-              text:"Select Amenities",
-              selectAllText:'Select All',
-              unSelectAllText:'UnSelect All',
-              enableSearchFilter: true,
-              classes:"myclass custom-class"
-            };        
+        console.log(this.amenities);      
       },
       error => {}
     );
@@ -642,7 +606,7 @@ onDeSelectAll(items: any){
         occup_max: [null, Validators.required],
         occup_ex_beds: [null, Validators.required],
         userid: [this.details._id],
-        amenities: [null],
+        amenity_list: [null],
         property: [this.details.properties[0]],
         room_numbers: [null],
         rates: this._fb.array([ this.createRate(this.details.rates[0]) ])

@@ -51,7 +51,7 @@ export class FrontdeskComponent implements OnInit {
 
 // Initialized to specific date (09.10.2018).
 
-
+  
 public model: any = { date: {  year: moment().format('YYYY'),
 month: moment().format('MM'),
 day: moment().format('DD')

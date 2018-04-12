@@ -53,6 +53,9 @@ var roomSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  amenity_list: {
+    type: [String]
+  },
   rates: [rateSchema]
   
 });

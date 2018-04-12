@@ -335,52 +335,50 @@
               </div>
 
               
-              <!--
-              <div class="form-group col-md-6">
-                  <label for="sel1">Select Amenities</label>
-                  <angular2-multiselect [data]="itemList" [(ngModel)]="selectedItems" 
-                  [settings]="settings" 
-                  (onSelect)="onItemSelect($event)"
-                  (onDeSelect)="OnItemDeSelect($event)" 
-                  (onSelectAll)="onSelectAll($event)" 
-                  (onDeSelectAll)="onDeSelectAll($event)" formControlName="amenities">
-</angular2-multiselect>
-</div> -->
               
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-5">
+                  <label for="sel1">Select Amenities</label>
+                  
+                    <mat-select placeholder="" formControlName="amenity_list" multiple>
+                      <mat-option *ngFor="let item of amenities" [value]="item.name">{{ item.name }}</mat-option>
+                    </mat-select>
+                 
+              </div> 
+              
+              <div class="form-group col-md-4">
                   <label for="beds">No of Rooms</label>
                   <input type="text" class="form-control" id="beds" name="norooms" placeholder="Room quantity" formControlName="no_of_rooms">
                 </div>
 
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-4">
                 <label for="type">Base Price</label>
                 <input type="text" class="form-control" id="type" name="price" placeholder="Room Type" formControlName="base_price">
               </div>
               
           
               
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-4">
                   <label for="type">Extra Person Charge</label>
                   <input type="text" class="form-control" id="type" name="experch" placeholder="Room Type" formControlName="ex_person_charge">
                 </div>
               
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-3">
                     <label for="type">Extra Bed Charge</label>
                     <input type="text" class="form-control" id="type" name="exbedch" placeholder="Room Type" formControlName="ex_bed_charge">
                   </div>
               
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-3">
                       <label for="type">Base Occupancy</label>
                       <input type="text" class="form-control" id="type" name="occupbas" placeholder="Room Type" formControlName="occup_base">
                     </div>
 
 
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                         <label for="type">Max Occupancy</label>
                         <input type="text" class="form-control" id="type" name="occupmax" placeholder="Room Type" formControlName="occup_max">
                       </div>
 
-                      <div class="form-group col-md-4">
+                      <div class="form-group col-md-3">
                           <label for="type">Max Extra Beds</label>
                           <input type="text" class="form-control" id="type" name="occupex" placeholder="Room Type" formControlName="occup_ex_beds">
                         </div>

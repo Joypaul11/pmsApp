@@ -35,6 +35,7 @@ public allRooms: AllRooms[] = [];
       error => {}
     ) 
   }
+  
 
   gotoAddRoom () {
     this.router.navigate(['/admin-dashboard/add-single-room'])

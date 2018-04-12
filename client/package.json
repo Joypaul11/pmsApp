@@ -46,6 +46,7 @@
     "mydatepicker": "^2.6.3",
     "npm": "^5.7.1",
     "primeng": "^5.2.0",
+    "react-calendar-timeline": "^0.15.10",
     "rxjs": "^5.5.2",
     "underscore": "^1.8.3",
     "zone.js": "^0.8.14"

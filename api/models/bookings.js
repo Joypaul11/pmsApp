@@ -63,6 +63,9 @@ var bookingHistorySchema = new mongoose.Schema({
   },
   rate_type: {
     type: String,
+  },
+  amenity_list: {
+    type: [String]
   }
 });
 
